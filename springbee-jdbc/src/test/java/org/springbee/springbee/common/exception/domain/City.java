@@ -1,4 +1,4 @@
-package org.springbee.springbee.jdbc.domain;
+package org.springbee.springbee.common.exception.domain;
 
 import java.io.Serializable;
 import lombok.Builder;

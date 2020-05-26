@@ -1,3 +1,4 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-org.springbee.jdbc.dynamic.autoconfigure.DynamicDataSourceAutoConfiguration
+org.springbee.jdbc.dynamic.autoconfigure.DynamicDataSourceAutoConfiguration, \
+org.springbee.jdbc.protection.autoconfigure.SqlProtectionAutoConfiguration

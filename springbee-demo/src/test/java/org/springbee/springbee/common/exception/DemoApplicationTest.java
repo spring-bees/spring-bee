@@ -1,4 +1,4 @@
-package org.springbee.springbee.jdbc;
+package org.springbee.springbee.common.exception;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -9,8 +9,8 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springbee.springbee.jdbc.domain.City;
-import org.springbee.springbee.jdbc.mapper.CityMapper;
+import org.springbee.springbee.common.exception.mapper.CityMapper;
+import org.springbee.springbee.common.exception.domain.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 

@@ -1,24 +1,35 @@
-package org.springbee.springbee.jdbc;
+package org.springbee.springbee.common.exception;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springbee.springbee.jdbc.domain.City;
-import org.springbee.springbee.jdbc.mapper.MasterMapper;
+import org.mybatis.spring.MyBatisSystemException;
+import org.springbee.springbee.common.exception.domain.City;
+import org.springbee.springbee.common.exception.mapper.MasterMapper;
+import org.springbee.springbee.common.exception.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+/**
+ * @author zhanglei
+ */
+@Slf4j
+@SpringBootTest(properties = {"springbee.datasource.sql.protection.enabled=true"})
 public class DataSourceTest {
 
   @Autowired
   private MasterMapper masterMapper;
+
+  @Autowired
+  private CityService cityService;
 
   @BeforeEach
   public void setup() {
@@ -63,5 +74,30 @@ public class DataSourceTest {
     List<City> cities = masterMapper.getAll();
     assertEquals(2, cities.size());
     assertEquals(3, ((Page) cities).getTotal());
+  }
+
+  @Test
+  public void testTransactional() {
+    try {
+      cityService.addCityThrowException();
+    } catch (Exception e) {
+      log.error("", e);
+    }
+    assertEquals(3, cityService.getAllCity().size());
+  }
+
+  @Test
+  public void testNestedTransactional() {
+    try {
+      cityService.addCityNestedThrowException();
+    } catch (Exception e) {
+      log.error("", e);
+    }
+    assertEquals(3, cityService.getAllCity().size());
+  }
+
+  @Test
+  public void testWithSqlProtection() {
+    assertThatThrownBy(() -> masterMapper.dropTable()).isInstanceOf(MyBatisSystemException.class);
   }
 }

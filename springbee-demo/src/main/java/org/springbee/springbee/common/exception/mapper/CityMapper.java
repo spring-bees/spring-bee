@@ -1,4 +1,4 @@
-package org.springbee.springbee.jdbc.mapper;
+package org.springbee.springbee.common.exception.mapper;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Delete;
@@ -7,13 +7,13 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.springbee.springbee.jdbc.domain.City;
+import org.springbee.springbee.common.exception.domain.City;
 
 /**
  * @author zhanglei
  */
 @Mapper
-public interface MasterMapper {
+public interface CityMapper {
 
   @Select("select id, name, state, country from city")
   List<City> getAll();

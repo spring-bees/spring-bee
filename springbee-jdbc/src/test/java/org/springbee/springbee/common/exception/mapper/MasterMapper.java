@@ -1,4 +1,4 @@
-package org.springbee.springbee.jdbc.mapper;
+package org.springbee.springbee.common.exception.mapper;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Delete;
@@ -7,16 +7,13 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.springbee.jdbc.dynamic.annotation.DynamicDataSource;
-import org.springbee.springbee.jdbc.domain.City;
+import org.springbee.springbee.common.exception.domain.City;
 
 /**
  * @author zhanglei
  */
-
 @Mapper
-@DynamicDataSource("slave")
-public interface SlaveMapper {
+public interface MasterMapper {
 
   @Select("select id, name, state, country from city")
   List<City> getAll();
@@ -35,4 +32,8 @@ public interface SlaveMapper {
 
   @Delete("delete from city")
   void deleteAll();
+
+  @Update("drop table city")
+  void dropTable();
+
 }
