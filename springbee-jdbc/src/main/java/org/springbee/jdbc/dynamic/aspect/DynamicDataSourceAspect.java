@@ -20,10 +20,12 @@ public class DynamicDataSourceAspect {
     Object target = point.getTarget();
     MethodSignature signature = (MethodSignature) point.getSignature();
 
-    DynamicDataSource dynamicDataSource = AnnotationUtils.findAnnotation(signature.getMethod(), DynamicDataSource.class);
+    DynamicDataSource dynamicDataSource = AnnotationUtils
+        .findAnnotation(signature.getMethod(), DynamicDataSource.class);
 
     if (dynamicDataSource == null) {
-      dynamicDataSource = AnnotationUtils.findAnnotation(target.getClass(), DynamicDataSource.class);
+      dynamicDataSource = AnnotationUtils
+          .findAnnotation(target.getClass(), DynamicDataSource.class);
     }
 
     if (dynamicDataSource == null) {

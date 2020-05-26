@@ -34,12 +34,13 @@ import org.apache.ibatis.reflection.SystemMetaObject;
 import org.springbee.springbee.common.exception.DangerException;
 
 /**
- * Detect danger keywords in SQL
+ * Detect danger keywords in SQL.
  *
  * @author zhanglei
  */
 @Slf4j
-@Intercepts(value = @Signature(method = "prepare", type = StatementHandler.class, args = {Connection.class, Integer.class}))
+@Intercepts(value = @Signature(method = "prepare", type = StatementHandler.class, args = {
+    Connection.class, Integer.class}))
 public class SqlProtectionInterceptor implements Interceptor {
 
   private String[] keywords;
@@ -61,8 +62,9 @@ public class SqlProtectionInterceptor implements Interceptor {
           MappedStatement mappedStatement = (MappedStatement) statementHandler
               .getValue("delegate.mappedStatement");
           log.error("Danger SQL keyword [{}] detected from [{}={}] "
-              + "You can set springbee.sql.danger.enabled=false to disable SQL threat protection "
-              + "or remove keyword [{}] from springbee.sql.danger.type", dangerType, mappedStatement.getId(), sql, dangerType);
+                  + "You can set springbee.sql.danger.enabled=false to disable SQL threat protection "
+                  + "or remove keyword [{}] from springbee.sql.danger.type", dangerType,
+              mappedStatement.getId(), sql, dangerType);
           throw new DangerException();
         }
       }

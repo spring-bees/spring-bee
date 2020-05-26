@@ -23,12 +23,16 @@
     <mybatis-spring-boot-starter.version>2.1.2</mybatis-spring-boot-starter.version>
     <pagehelper.version>1.2.13</pagehelper.version>
     <guava.version>29.0-jre</guava.version>
+    <!-- plugin dependencies -->
+    <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
+    <puppycrawl.checkstyle.version>6.19</puppycrawl.checkstyle.version>
   </properties>
 
   <modules>
     <module>springbee-common</module>
     <module>springbee-jdbc</module>
     <module>springbee-demo</module>
+    <module>buildtools</module>
   </modules>
 
   <dependencyManagement>
@@ -86,5 +90,43 @@
       </exclusions>
     </dependency>
   </dependencies>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>${maven-checkstyle-plugin.version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>com.puppycrawl.tools</groupId>
+              <artifactId>checkstyle</artifactId>
+              <version>${puppycrawl.checkstyle.version}</version>
+            </dependency>
+          </dependencies>
+          <configuration>
+            <configLocation>buildtools/src/main/resources/checkstyle.xml</configLocation>
+            <suppressionsLocation>buildtools/src/main/resources/suppressions.xml
+            </suppressionsLocation>
+            <encoding>UTF-8</encoding>
+            <consoleOutput>true</consoleOutput>
+            <failOnViolation>true</failOnViolation>
+            <includeResources>false</includeResources>
+            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+          </configuration>
+          <executions>
+            <execution>
+              <id>checkstyle</id>
+              <phase>validate</phase>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 
 </project>
