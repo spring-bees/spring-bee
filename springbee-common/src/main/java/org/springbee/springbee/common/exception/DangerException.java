@@ -5,11 +5,11 @@ package org.springbee.springbee.common.exception;
  */
 public class DangerException extends Exception {
 
-  public DangerException(String errorMessage, Throwable err) {
+  public DangerException(final String errorMessage, final Throwable err) {
     super(errorMessage, err);
   }
 
-  public DangerException(String errorMessage) {
+  public DangerException(final String errorMessage) {
     super(errorMessage);
   }
 
