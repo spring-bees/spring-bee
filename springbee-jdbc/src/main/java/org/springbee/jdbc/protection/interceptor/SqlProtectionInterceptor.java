@@ -31,7 +31,7 @@ import org.apache.ibatis.plugin.Plugin;
 import org.apache.ibatis.plugin.Signature;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.SystemMetaObject;
-import org.springbee.springbee.common.exception.DangerException;
+import org.springbee.common.exception.DangerException;
 
 /**
  * Detect danger keywords in SQL.
