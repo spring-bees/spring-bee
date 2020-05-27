@@ -44,6 +44,7 @@ public class DynamicDataSourceAutoConfiguration implements EnvironmentAware {
 
   private Environment environment;
 
+  @SuppressWarnings("unchecked")
   private WeakHashMap<String, DataSource> dataSourceMap = new WeakHashMap();
 
   @Override
@@ -68,6 +69,7 @@ public class DynamicDataSourceAutoConfiguration implements EnvironmentAware {
   }
 
   @Bean
+  @SuppressWarnings("unchecked")
   public DynamicDataSource dynamicDataSource(@Autowired DataSource defaultDataSource) {
     DynamicDataSource dynamicDataSource = new DynamicDataSource();
     dynamicDataSource.setDefaultTargetDataSource(defaultDataSource);
