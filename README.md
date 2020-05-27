@@ -1,7 +1,7 @@
 ```
-mvn clean package  checkstyle:check
+mvn clean package checkstyle:check
 ```
 
 ```
-mvn clean package  checkstyle:check -DskipTests
+mvn clean package checkstyle:check -DskipTests
 ```
