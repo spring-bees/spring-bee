@@ -21,18 +21,14 @@ public class SpringBeeApplicationRunListener implements SpringApplicationRunList
   public SpringBeeApplicationRunListener(SpringApplication application, String[] args) {
   }
 
-//  @Override
-//  public void starting() {
-//    log.info("starting...");
-//  }
-
   @Override
   public void environmentPrepared(ConfigurableEnvironment environment) {
     Properties properties = new Properties();
     try {
       File file = ResourceUtils.getFile("classpath:springbee-default.properties");
-      InputStream in = new FileInputStream(file);
-      properties.load(in);
+      try (InputStream in = new FileInputStream(file)) {
+        properties.load(in);
+      }
       environment.getPropertySources()
           .addFirst(new PropertiesPropertySource("springbee-default", properties));
     } catch (IOException e) {

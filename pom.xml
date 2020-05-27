@@ -30,6 +30,8 @@
     <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
     <puppycrawl.checkstyle.version>6.19</puppycrawl.checkstyle.version>
     <jacoco.version>0.8.5</jacoco.version>
+    <spotbugs-maven-plugin.version>4.0.0</spotbugs-maven-plugin.version>
+    <spotbugs.version>4.0.3</spotbugs.version>
   </properties>
 
   <modules>
@@ -150,6 +152,35 @@
     </pluginManagement>
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>${maven-source-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <version>${spotbugs-maven-plugin.version}</version>
+        <configuration>
+          <excludeFilterFile>${session.executionRootDirectory}/buildtools/src/main/resources/findbugs_exclude.xml</excludeFilterFile>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>test</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>${maven-compiler-plugin.version}</version>
         <configuration>
@@ -193,7 +224,7 @@
                     <limit implementation="org.jacoco.report.check.Limit">
                       <counter>LINE</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.80</minimum>
+                      <minimum>0.70</minimum>
                     </limit>
                     <!-- 指定类覆盖到100%，不能遗失任何类 -->
                     <limit implementation="org.jacoco.report.check.Limit">

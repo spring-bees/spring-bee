@@ -46,7 +46,7 @@ public class SqlProtectionInterceptor implements Interceptor {
   private String[] keywords;
 
   public SqlProtectionInterceptor(String[] keywords) {
-    this.keywords = keywords;
+    this.keywords = keywords.clone();
   }
 
   @Override

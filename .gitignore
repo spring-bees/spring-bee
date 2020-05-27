@@ -1,1 +1,2 @@
 target/
+/springbee-jdbc/memory:masterdb?cache=shared
