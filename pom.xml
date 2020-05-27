@@ -28,7 +28,7 @@
 
     <!-- plugin dependencies -->
     <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
-    <puppycrawl.checkstyle.version>6.19</puppycrawl.checkstyle.version>
+    <puppycrawl.checkstyle.version>8.29</puppycrawl.checkstyle.version>
     <jacoco.version>0.8.5</jacoco.version>
     <spotbugs-maven-plugin.version>4.0.0</spotbugs-maven-plugin.version>
     <spotbugs.version>4.0.3</spotbugs.version>
