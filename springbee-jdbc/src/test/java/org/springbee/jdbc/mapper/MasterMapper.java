@@ -1,5 +1,6 @@
 package org.springbee.jdbc.mapper;
 
+import java.sql.Date;
 import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -36,4 +37,9 @@ public interface MasterMapper {
   @Update("drop table city")
   void dropTable();
 
+  @Select({"<script>", " select"
+      + " <if test=\"_databaseId == 'sqlite'\">strftime('%Y-%m-%d %H:%M:%f','now')</if>"
+      + " <if test=\"_databaseId == 'h2'\">current_timestamp()</if>"
+      + "</script>"})
+  Date getNow();
 }

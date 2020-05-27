@@ -100,4 +100,9 @@ public class DataSourceTest {
   public void testWithSqlProtection() {
     assertThatThrownBy(() -> masterMapper.dropTable()).isInstanceOf(MyBatisSystemException.class);
   }
+
+  @Test
+  public void testNow() {
+    masterMapper.getNow();
+  }
 }

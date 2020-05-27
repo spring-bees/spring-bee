@@ -10,6 +10,8 @@ import java.util.Properties;
 import java.util.WeakHashMap;
 import java.util.stream.Collectors;
 import javax.sql.DataSource;
+import org.apache.ibatis.mapping.DatabaseIdProvider;
+import org.apache.ibatis.mapping.VendorDatabaseIdProvider;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springbee.jdbc.dynamic.DynamicDataSource;
 import org.springbee.jdbc.dynamic.aspect.DynamicDataSourceAspect;
@@ -108,11 +110,28 @@ public class DynamicDataSourceAutoConfiguration implements EnvironmentAware {
   }
 
   @Bean
+  public DatabaseIdProvider databaseIdProvider() {
+    DatabaseIdProvider databaseIdProvider = new VendorDatabaseIdProvider();
+    Properties p = new Properties();
+    p.setProperty("Oracle", "oracle");
+    p.setProperty("MySQL", "mysql");
+    p.setProperty("H2", "h2");
+    p.setProperty("SQLite", "sqlite");
+    p.setProperty("SQL Server", "sqlserver");
+    p.setProperty("DB2", "db2");
+    p.setProperty("PostgreSQL", "postgresql");
+    databaseIdProvider.setProperties(p);
+    return databaseIdProvider;
+  }
+
+  @Bean
   @Primary
-  public SqlSessionFactoryBean sqlSessionFactoryBean(@Autowired DynamicDataSource dynamicDataSource)
+  public SqlSessionFactoryBean sqlSessionFactoryBean(@Autowired DynamicDataSource dynamicDataSource,
+      @Autowired DatabaseIdProvider databaseIdProvider)
       throws Exception {
     SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
     sqlSessionFactoryBean.setDataSource(dynamicDataSource);
+    sqlSessionFactoryBean.setDatabaseIdProvider(databaseIdProvider);
     sqlSessionFactoryBean.afterPropertiesSet();
     return sqlSessionFactoryBean;
   }
