@@ -1,7 +1,5 @@
 package org.springbee.boot.listener;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -10,7 +8,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringApplicationRunListener;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.PropertiesPropertySource;
-import org.springframework.util.ResourceUtils;
 
 /**
  * @author zhanglei
@@ -25,14 +22,14 @@ public class SpringBeeApplicationRunListener implements SpringApplicationRunList
   public void environmentPrepared(ConfigurableEnvironment environment) {
     Properties properties = new Properties();
     try {
-      File file = ResourceUtils.getFile("classpath:springbee-default.properties");
-      try (InputStream in = new FileInputStream(file)) {
+      ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+      try (InputStream in = classLoader.getResourceAsStream("springbee-default.properties")) {
         properties.load(in);
       }
       environment.getPropertySources()
           .addFirst(new PropertiesPropertySource("springbee-default", properties));
     } catch (IOException e) {
-      log.error(e.getMessage());
+      log.error(e.getMessage(), e);
     }
   }
 //

@@ -33,9 +33,9 @@ public class SqlProtectionAutoConfiguration {
   @PostConstruct
   public void addDangerSqlInterceptor() {
     SqlProtectionInterceptor interceptor = new SqlProtectionInterceptor(keywords);
-    Iterator var3 = this.sqlSessionFactoryList.iterator();
-    while (var3.hasNext()) {
-      SqlSessionFactory sqlSessionFactory = (SqlSessionFactory) var3.next();
+    Iterator it = this.sqlSessionFactoryList.iterator();
+    while (it.hasNext()) {
+      SqlSessionFactory sqlSessionFactory = (SqlSessionFactory) it.next();
       sqlSessionFactory.getConfiguration().addInterceptor(interceptor);
     }
   }
