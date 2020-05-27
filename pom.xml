@@ -35,11 +35,12 @@
   </properties>
 
   <modules>
+    <module>buildtools</module>
     <module>springbee-common</module>
     <module>springbee-boot</module>
     <module>springbee-jdbc</module>
     <module>springbee-web</module>
-    <module>buildtools</module>
+    <module>springbee-log</module>
     <module>springbee-demo</module>
   </modules>
 
@@ -48,6 +49,11 @@
       <dependency>
         <groupId>org.springbee</groupId>
         <artifactId>springbee-common</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springbee</groupId>
+        <artifactId>springbee-log</artifactId>
         <version>0.0.1-SNAPSHOT</version>
       </dependency>
       <dependency>
