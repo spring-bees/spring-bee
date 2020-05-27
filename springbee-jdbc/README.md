@@ -27,7 +27,7 @@ spring.dynamicdatasource.slave.hikari.maximumPoolSize=20
 spring.dynamicdatasource.slave.hikari.connection-test-query=SELECT 1
 spring.dynamicdatasource.slave.hikari.poolName=slave
 
-spring.flyway.locations=db/migration/{vendor}
+spring.flyway.locations=classpath:/db/migration/{vendor}
 spring.flyway.poolName=master
 
 springbee.datasource.sql.protection.enabled=true

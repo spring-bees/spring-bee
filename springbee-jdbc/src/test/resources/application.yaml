@@ -33,7 +33,7 @@ spring:
         poolName: slave
 
   flyway:
-    locations: db/migration/{vendor}
+    locations: classpath:/db/migration/{vendor}
 
 springbee:
   datasource:
