@@ -49,6 +49,7 @@
     <module>springbee-web</module>
     <module>springbee-log-kafka</module>
     <module>springbee-demo</module>
+    <module>maven-archetype-springbee</module>
   </modules>
 
   <dependencyManagement>
