@@ -23,9 +23,6 @@ public class SpringBeeApplicationRunListener implements SpringApplicationRunList
 
   @Override
   public void environmentPrepared(ConfigurableEnvironment environment) {
-    environment.getActiveProfiles();
-    environment.acceptsProfiles(Profiles.of("prod"));
-    environment.setActiveProfiles("prod");
     Properties properties = new Properties();
     try {
       ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -40,16 +37,14 @@ public class SpringBeeApplicationRunListener implements SpringApplicationRunList
     }
   }
 
-  @SneakyThrows
-  @Override
-  public void contextPrepared(ConfigurableApplicationContext context) {
-    log.info("contextPrepared...");
-  }
-
-  @Override
-  public void contextLoaded(ConfigurableApplicationContext context) {
-    log.info("contextLoaded...");
-  }
+//  @SneakyThrows
+//  @Override
+//  public void contextPrepared(ConfigurableApplicationContext context) {
+//  }
+//
+//  @Override
+//  public void contextLoaded(ConfigurableApplicationContext context) {
+//  }
 //
 //  @Override
 //  public void started(ConfigurableApplicationContext context) {

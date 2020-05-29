@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <included>
-  <appender name="RollingFile"
+  <springProperty scope="context" name="logging.file.name" source="logging.file.name"
+    defaultValue="springbee.log"/>
+  <springProperty scope="context" name="logging.file.path" source="logging.file.path"
+    defaultValue="logs"/>
+  <property name="LOGS" value="${logging.file.path}"/>
+  <property name="FILE" value="${logging.file.name}"/>
+  <appender name="RollingFileAppender"
     class="ch.qos.logback.core.rolling.RollingFileAppender">
     <file>${LOGS}/${FILE}</file>
     <encoder

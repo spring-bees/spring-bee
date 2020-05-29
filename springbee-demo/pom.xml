@@ -36,6 +36,10 @@
       <groupId>org.springbee</groupId>
       <artifactId>springbee-logging</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.springbee</groupId>
+      <artifactId>springbee-logging-kafka</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
