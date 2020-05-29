@@ -1,0 +1,23 @@
+<configuration>
+  <appender class="org.springbee.logging.kafka.KafkaAppender" name="KafkaAppender">
+    <deliveryStrategy
+      class="org.springbee.logging.kafka.delivery.AsynchronousDeliveryStrategy"/>
+    <encoder>
+      <pattern>%msg</pattern>
+    </encoder>
+    <keyingStrategy class="org.springbee.logging.kafka.keying.HostNameKeyingStrategy"/>
+    <producerConfig>bootstrap.servers=localhost:9092</producerConfig>
+    <topic>logs</topic>
+  </appender>
+  <appender class="ch.qos.logback.core.ConsoleAppender" name="STDOUT">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+  <logger additivity="false" level="info" name="LogbackIntegrationIT">
+    <appender-ref ref="KafkaAppender"/>
+  </logger>
+  <root level="warn">
+    <appender-ref ref="STDOUT"/>
+  </root>
+</configuration>

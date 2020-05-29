@@ -3,9 +3,11 @@ package org.springbee.boot.listener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringApplicationRunListener;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.PropertiesPropertySource;
 
@@ -16,6 +18,7 @@ import org.springframework.core.env.PropertiesPropertySource;
 public class SpringBeeApplicationRunListener implements SpringApplicationRunListener {
 
   public SpringBeeApplicationRunListener(SpringApplication application, String[] args) {
+
   }
 
   @Override
@@ -32,16 +35,17 @@ public class SpringBeeApplicationRunListener implements SpringApplicationRunList
       log.error(e.getMessage(), e);
     }
   }
-//
-//  @Override
-//  public void contextPrepared(ConfigurableApplicationContext context) {
-//    log.info("contextPrepared...");
-//  }
-//
-//  @Override
-//  public void contextLoaded(ConfigurableApplicationContext context) {
-//    log.info("contextLoaded...");
-//  }
+
+  @SneakyThrows
+  @Override
+  public void contextPrepared(ConfigurableApplicationContext context) {
+    log.info("contextPrepared...");
+  }
+
+  @Override
+  public void contextLoaded(ConfigurableApplicationContext context) {
+    log.info("contextLoaded...");
+  }
 //
 //  @Override
 //  public void started(ConfigurableApplicationContext context) {

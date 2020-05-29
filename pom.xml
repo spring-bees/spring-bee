@@ -47,7 +47,8 @@
     <module>springbee-boot</module>
     <module>springbee-jdbc</module>
     <module>springbee-web</module>
-    <module>springbee-log-kafka</module>
+    <module>springbee-logging</module>
+    <module>springbee-logging-kafka</module>
     <module>springbee-demo</module>
     <module>maven-archetype-springbee</module>
   </modules>
@@ -61,7 +62,12 @@
       </dependency>
       <dependency>
         <groupId>org.springbee</groupId>
-        <artifactId>springbee-log-kafka</artifactId>
+        <artifactId>springbee-logging</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springbee</groupId>
+        <artifactId>springbee-logging-kafka</artifactId>
         <version>0.0.1-SNAPSHOT</version>
       </dependency>
       <dependency>
