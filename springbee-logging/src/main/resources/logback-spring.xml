@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-  <springProperty scope="context" name="logging.file.name" source="logging.file.name" defaultValue="springbee.log"/>
+  <springProperty scope="context" name="logging.file.name" source="logging.file.name"
+    defaultValue="springbee.log"/>
   <springProperty scope="context" name="server.host" source="server.host" defaultValue="0.0.0.0"/>
   <property name="LOGS" value="./logs"/>
   <property name="FILE" value="${logging.file.name}"/>
 
   <include resource="logback-appender-console.xml"/>
-  <include resource="logback-appender-file.xml"/>
+
+  <springProfile name="logfile">
+    <include resource="logback-appender-console.xml"/>
+    <include resource="logback-appender-file.xml"/>
+  </springProfile>
 
   <root level="info">
-    <appender-ref ref="RollingFile"/>
+    <springProfile name="logfile">
+      <appender-ref ref="RollingFile"/>
+    </springProfile>
     <appender-ref ref="Console"/>
   </root>
 
   <logger name="org.springbee" level="info" additivity="false">
-    <appender-ref ref="RollingFile"/>
+    <springProfile name="prod">
+      <appender-ref ref="RollingFile"/>
+    </springProfile>
     <appender-ref ref="Console"/>
   </logger>
 
