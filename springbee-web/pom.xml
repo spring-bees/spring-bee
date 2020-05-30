@@ -31,4 +31,16 @@
       <artifactId>spring-boot-starter-undertow</artifactId>
     </dependency>
   </dependencies>
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>false</filtering>
+        <includes>
+          <include>**/*.p12</include>
+          <include>META-INF/spring.factories</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
 </project>
