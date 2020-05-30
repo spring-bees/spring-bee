@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: springbee-demo
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:h2:mem:masterdb
@@ -13,9 +15,3 @@ spring:
       minimumIdle: 5
       maximumPoolSize: 20
       connection-test-query: SELECT 1
-
-  flyway:
-    locations: classpath:/db/migration/{vendor}
-
-#  profiles:
-#    active: logkafka

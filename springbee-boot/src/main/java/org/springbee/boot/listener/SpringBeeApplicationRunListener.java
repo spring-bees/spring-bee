@@ -29,33 +29,33 @@ public class SpringBeeApplicationRunListener implements SpringApplicationRunList
       try (InputStream in = classLoader.getResourceAsStream("springbee-default.properties")) {
         properties.load(in);
       }
-      properties.setProperty("spring.profiles.active","prod");
       environment.getPropertySources()
-          .addFirst(new PropertiesPropertySource("springbee-default", properties));
+          .addLast(new PropertiesPropertySource("springbee-default", properties));
     } catch (IOException e) {
       log.error(e.getMessage(), e);
     }
   }
 
-//  @SneakyThrows
 //  @Override
 //  public void contextPrepared(ConfigurableApplicationContext context) {
+//    log.info("started...");
 //  }
-//
+
 //  @Override
 //  public void contextLoaded(ConfigurableApplicationContext context) {
+//    log.info("started...");
 //  }
-//
+
 //  @Override
 //  public void started(ConfigurableApplicationContext context) {
 //    log.info("started...");
 //  }
-//
+
 //  @Override
 //  public void running(ConfigurableApplicationContext context) {
 //    log.info("running...");
 //  }
-//
+
 //  @Override
 //  public void failed(ConfigurableApplicationContext context, Throwable exception) {
 //    log.info("failed...");
