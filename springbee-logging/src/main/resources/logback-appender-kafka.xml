@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <included>
-  <springProperty scope="context" name="logging.kafka.topic" source="logging.kafka.topic"
-    defaultValue="springbee-topic"/>
-  <springProperty scope="context" name="logging.kafka.partition" source="logging.kafka.partition"
-    defaultValue="0"/>
-  <springProperty scope="context" name="logging.kafka.bootstrap.servers" source="logging.kafka.bootstrap.servers"
-    defaultValue="localhost:9092"/>
-  <appender name="KafkaAppender" class="org.springbee.logging.kafka.KafkaAppender">
+  <appender class="org.springbee.logging.kafka.KafkaAppender" name="KafkaAppender">
+    <appendTimestamp>true</appendTimestamp>
     <deliveryStrategy
       class="org.springbee.logging.kafka.delivery.AsynchronousDeliveryStrategy"/>
     <encoder>
       <pattern>[${server.host}] %d %p %C{1.} [%t] %m%n</pattern>
     </encoder>
     <keyingStrategy class="org.springbee.logging.kafka.keying.HostNameKeyingStrategy"/>
-    <topic>${logging.kafka.topic}</topic>
     <partition>${logging.kafka.partition}</partition>
-    <appendTimestamp>true</appendTimestamp>
     <producerConfig>bootstrap.servers=${logging.kafka.bootstrap.servers}</producerConfig>
     <producerConfig>acks=0</producerConfig>
+    <topic>${logging.kafka.topic}</topic>
   </appender>
+  <springProperty defaultValue="0" name="logging.kafka.partition" scope="context"
+    source="logging.kafka.partition"/>
+  <springProperty defaultValue="localhost:9092" name="logging.kafka.bootstrap.servers"
+    scope="context"
+    source="logging.kafka.bootstrap.servers"/>
+  <springProperty defaultValue="springbee-topic" name="logging.kafka.topic" scope="context"
+    source="logging.kafka.topic"/>
 </included>

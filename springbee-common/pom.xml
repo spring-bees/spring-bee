@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>springbee-common</artifactId>
+  <dependencies>
+  </dependencies>
+
+  <groupId>org.springbee</groupId>
   <modelVersion>4.0.0</modelVersion>
+  <name>SpringBee :: Common</name>
+  <packaging>jar</packaging>
   <parent>
-    <groupId>org.springbee</groupId>
     <artifactId>springbee-parent</artifactId>
+    <groupId>org.springbee</groupId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.springbee</groupId>
-  <artifactId>springbee-common</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
-  <name>SpringBee :: Common</name>
-
-  <dependencies>
-  </dependencies>
 </project>

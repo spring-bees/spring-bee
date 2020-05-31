@@ -2,19 +2,7 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>org.springbee</groupId>
-    <artifactId>springbee-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-
-  <groupId>org.springbee</groupId>
   <artifactId>springbee-logging-kafka</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
-  <name>SpringBee :: Logging Kafka</name>
-
   <dependencies>
     <dependency>
       <artifactId>kafka-clients</artifactId>
@@ -32,19 +20,31 @@
 
     <!-- test -->
     <dependency>
-      <groupId>org.apache.kafka</groupId>
       <artifactId>kafka_${scala.version}</artifactId>
+      <groupId>org.apache.kafka</groupId>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.apache.zookeeper</groupId>
       <artifactId>zookeeper</artifactId>
+      <groupId>org.apache.zookeeper</groupId>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.apache.zookeeper</groupId>
       <artifactId>zookeeper</artifactId>
+      <groupId>org.apache.zookeeper</groupId>
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <groupId>org.springbee</groupId>
+  <modelVersion>4.0.0</modelVersion>
+  <name>SpringBee :: Logging Kafka</name>
+  <packaging>jar</packaging>
+  <parent>
+    <artifactId>springbee-parent</artifactId>
+    <groupId>org.springbee</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <version>0.0.1-SNAPSHOT</version>
 </project>

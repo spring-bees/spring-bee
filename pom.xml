@@ -1,105 +1,247 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.3.0.RELEASE</version>
-  </parent>
-
-  <groupId>org.springbee</groupId>
   <artifactId>springbee-parent</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <name>SpringBee :: Parent</name>
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <configuration>
+            <configLocation>buildtools/src/main/resources/checkstyle.xml</configLocation>
+            <consoleOutput>true</consoleOutput>
+            <encoding>UTF-8</encoding>
+            <failOnViolation>true</failOnViolation>
+            <includeResources>false</includeResources>
+            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+            <suppressionsLocation>buildtools/src/main/resources/suppressions.xml
+            </suppressionsLocation>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <artifactId>checkstyle</artifactId>
+              <groupId>com.puppycrawl.tools</groupId>
+              <version>${puppycrawl.checkstyle.version}</version>
+            </dependency>
+          </dependencies>
+          <executions>
+            <execution>
+              <goals>
+                <goal>check</goal>
+              </goals>
+              <id>checkstyle</id>
+              <phase>validate</phase>
+            </execution>
+          </executions>
+          <groupId>org.apache.maven.plugins</groupId>
+          <version>${maven-checkstyle-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <groupId>org.jacoco</groupId>
+          <version>${jacoco.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <id>attach-sources</id>
+          </execution>
+        </executions>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>${maven-source-plugin.version}</version>
+      </plugin>
+      <plugin>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <configuration>
+          <excludeFilterFile>
+            ${session.executionRootDirectory}/buildtools/src/main/resources/findbugs_exclude.xml
+          </excludeFilterFile>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <phase>test</phase>
+          </execution>
+        </executions>
+        <groupId>com.github.spotbugs</groupId>
+        <version>${spotbugs-maven-plugin.version}</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <compilerArgs>
+            <compilerArg>-Werror</compilerArg>
+            <compilerArg>-Xlint:deprecation</compilerArg>
+            <compilerArg>-Xlint:unchecked</compilerArg>
+          </compilerArgs>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+        </configuration>
+        <version>${maven-compiler-plugin.version}</version>
+      </plugin>
+      <plugin>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+            <id>jacoco-initialize</id>
+          </execution>
+          <execution>
+            <configuration>
+              <rules>
+                <rule implementation="org.jacoco.maven.RuleConfiguration">
+                  <element>BUNDLE</element>
+                  <limits>
+                    <!-- 指定方法覆盖到80% -->
+                    <limit implementation="org.jacoco.report.check.Limit">
+                      <counter>METHOD</counter>
+                      <minimum>0.50</minimum>
+                      <value>COVEREDRATIO</value>
+                    </limit>
+                    <!-- 指定行覆盖到80% -->
+                    <limit implementation="org.jacoco.report.check.Limit">
+                      <counter>LINE</counter>
+                      <minimum>0.50</minimum>
+                      <value>COVEREDRATIO</value>
+                    </limit>
+                    <!-- 指定类覆盖到100%，不能遗失任何类 -->
+                    <limit implementation="org.jacoco.report.check.Limit">
+                      <counter>CLASS</counter>
+                      <maximum>10</maximum>
+                      <value>MISSEDCOUNT</value>
+                    </limit>
+                  </limits>
+                </rule>
+              </rules>
+            </configuration>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <id>jacoco-check</id>
+            <phase>test</phase>
+          </execution>
+        </executions>
+        <groupId>org.jacoco</groupId>
+      </plugin>
+    </plugins>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+  </build>
 
-  <properties>
-    <java.version>1.8</java.version>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <timestamp>${maven.build.timestamp}</timestamp>
-    <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+  <dependencies>
+    <dependency>
+      <artifactId>spring-boot-starter</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>lombok</artifactId>
+      <groupId>org.projectlombok</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>guava</artifactId>
+      <groupId>com.google.guava</groupId>
+    </dependency>
 
-    <!-- dependencies -->
-    <mybatis-spring-boot-starter.version>2.1.2</mybatis-spring-boot-starter.version>
-    <pagehelper.version>1.2.13</pagehelper.version>
-    <guava.version>29.0-jre</guava.version>
-    <kafka.version>2.2.0</kafka.version>
-    <scala.version>2.11</scala.version>
-    <slf4j.version>1.7.25</slf4j.version>
-    <zookeeper.version>3.4.13</zookeeper.version>
-    <junit-benchmarks.version>0.7.2</junit-benchmarks.version>
-    <mockito.version>2.23.4</mockito.version>
-    <junit-jupiter.version>5.6.2</junit-jupiter.version>
-
-    <!-- plugin dependencies -->
-    <maven-checkstyle-plugin.version>3.1.1</maven-checkstyle-plugin.version>
-    <puppycrawl.checkstyle.version>8.29</puppycrawl.checkstyle.version>
-    <jacoco.version>0.8.5</jacoco.version>
-    <spotbugs-maven-plugin.version>4.0.0</spotbugs-maven-plugin.version>
-    <spotbugs.version>4.0.3</spotbugs.version>
-  </properties>
-
-  <modules>
-    <module>buildtools</module>
-    <module>springbee-common</module>
-    <module>springbee-boot</module>
-    <module>springbee-jdbc</module>
-    <module>springbee-web</module>
-    <module>springbee-logging</module>
-    <module>springbee-logging-kafka</module>
-    <module>springbee-demo</module>
-    <module>maven-archetype-springbee</module>
-  </modules>
-
+    <!-- test -->
+    <dependency>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>junit-vintage-engine</artifactId>
+          <groupId>org.junit.vintage</groupId>
+        </exclusion>
+      </exclusions>
+      <groupId>org.springframework.boot</groupId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <artifactId>log4j-over-slf4j</artifactId>
+      <groupId>org.slf4j</groupId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <artifactId>junit-benchmarks</artifactId>
+      <groupId>com.carrotsearch</groupId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <artifactId>mockito-core</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>hamcrest-core</artifactId>
+          <groupId>org.hamcrest</groupId>
+        </exclusion>
+      </exclusions>
+      <groupId>org.mockito</groupId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <artifactId>junit-jupiter-migrationsupport</artifactId>
+      <groupId>org.junit.jupiter</groupId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.springbee</groupId>
         <artifactId>springbee-common</artifactId>
+        <groupId>org.springbee</groupId>
         <version>0.0.1-SNAPSHOT</version>
       </dependency>
       <dependency>
-        <groupId>org.springbee</groupId>
         <artifactId>springbee-logging</artifactId>
+        <groupId>org.springbee</groupId>
         <version>0.0.1-SNAPSHOT</version>
       </dependency>
       <dependency>
-        <groupId>org.springbee</groupId>
         <artifactId>springbee-logging-kafka</artifactId>
+        <groupId>org.springbee</groupId>
         <version>0.0.1-SNAPSHOT</version>
       </dependency>
       <dependency>
-        <groupId>org.springbee</groupId>
         <artifactId>springbee-jdbc</artifactId>
+        <groupId>org.springbee</groupId>
         <version>0.0.1-SNAPSHOT</version>
       </dependency>
       <dependency>
-        <groupId>org.springbee</groupId>
         <artifactId>springbee-web</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-      </dependency>
-      <dependency>
         <groupId>org.springbee</groupId>
-        <artifactId>springbee-boot</artifactId>
         <version>0.0.1-SNAPSHOT</version>
       </dependency>
       <dependency>
-        <groupId>org.mybatis.spring.boot</groupId>
+        <artifactId>springbee-boot</artifactId>
+        <groupId>org.springbee</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
         <artifactId>mybatis-spring-boot-starter</artifactId>
+        <groupId>org.mybatis.spring.boot</groupId>
         <version>${mybatis-spring-boot-starter.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.github.pagehelper</groupId>
         <artifactId>pagehelper-spring-boot-starter</artifactId>
+        <groupId>com.github.pagehelper</groupId>
         <version>${pagehelper.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
+        <groupId>com.google.guava</groupId>
         <version>${guava.version}</version>
       </dependency>
       <dependency>
@@ -185,207 +327,65 @@
         <version>${mockito.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-migrationsupport</artifactId>
-        <version>${junit-jupiter.version}</version>
+        <groupId>org.junit.jupiter</groupId>
         <scope>test</scope>
+        <version>${junit-jupiter.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
+  <groupId>org.springbee</groupId>
+  <modelVersion>4.0.0</modelVersion>
+  <modules>
+    <module>buildtools</module>
+    <module>springbee-common</module>
+    <module>springbee-boot</module>
+    <module>springbee-jdbc</module>
+    <module>springbee-web</module>
+    <module>springbee-logging</module>
+    <module>springbee-logging-kafka</module>
+    <module>springbee-demo</module>
+    <module>maven-archetype-springbee</module>
+  </modules>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-    </dependency>
+  <name>SpringBee :: Parent</name>
 
-    <!-- test -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>org.junit.vintage</groupId>
-          <artifactId>junit-vintage-engine</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <artifactId>log4j-over-slf4j</artifactId>
-      <groupId>org.slf4j</groupId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <artifactId>junit-benchmarks</artifactId>
-      <groupId>com.carrotsearch</groupId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <artifactId>mockito-core</artifactId>
-      <exclusions>
-        <exclusion>
-          <artifactId>hamcrest-core</artifactId>
-          <groupId>org.hamcrest</groupId>
-        </exclusion>
-      </exclusions>
-      <groupId>org.mockito</groupId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-migrationsupport</artifactId>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+  <packaging>pom</packaging>
 
-  <build>
-    <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-        <filtering>true</filtering>
-      </resource>
-    </resources>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-checkstyle-plugin</artifactId>
-          <version>${maven-checkstyle-plugin.version}</version>
-          <dependencies>
-            <dependency>
-              <groupId>com.puppycrawl.tools</groupId>
-              <artifactId>checkstyle</artifactId>
-              <version>${puppycrawl.checkstyle.version}</version>
-            </dependency>
-          </dependencies>
-          <configuration>
-            <configLocation>buildtools/src/main/resources/checkstyle.xml</configLocation>
-            <suppressionsLocation>buildtools/src/main/resources/suppressions.xml
-            </suppressionsLocation>
-            <encoding>UTF-8</encoding>
-            <consoleOutput>true</consoleOutput>
-            <failOnViolation>true</failOnViolation>
-            <includeResources>false</includeResources>
-            <includeTestSourceDirectory>true</includeTestSourceDirectory>
-          </configuration>
-          <executions>
-            <execution>
-              <id>checkstyle</id>
-              <phase>validate</phase>
-              <goals>
-                <goal>check</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.jacoco</groupId>
-          <artifactId>jacoco-maven-plugin</artifactId>
-          <version>${jacoco.version}</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <version>${maven-source-plugin.version}</version>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>com.github.spotbugs</groupId>
-        <artifactId>spotbugs-maven-plugin</artifactId>
-        <version>${spotbugs-maven-plugin.version}</version>
-        <configuration>
-          <excludeFilterFile>
-            ${session.executionRootDirectory}/buildtools/src/main/resources/findbugs_exclude.xml
-          </excludeFilterFile>
-        </configuration>
-        <executions>
-          <execution>
-            <phase>test</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>${maven-compiler-plugin.version}</version>
-        <configuration>
-          <source>${java.version}</source>
-          <target>${java.version}</target>
-          <compilerArgs>
-            <compilerArg>-Werror</compilerArg>
-            <compilerArg>-Xlint:deprecation</compilerArg>
-            <compilerArg>-Xlint:unchecked</compilerArg>
-          </compilerArgs>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>jacoco-initialize</id>
-            <goals>
-              <goal>prepare-agent</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>jacoco-check</id>
-            <phase>test</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-            <configuration>
-              <rules>
-                <rule implementation="org.jacoco.maven.RuleConfiguration">
-                  <element>BUNDLE</element>
-                  <limits>
-                    <!-- 指定方法覆盖到80% -->
-                    <limit implementation="org.jacoco.report.check.Limit">
-                      <counter>METHOD</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.70</minimum>
-                    </limit>
-                    <!-- 指定行覆盖到80% -->
-                    <limit implementation="org.jacoco.report.check.Limit">
-                      <counter>LINE</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.70</minimum>
-                    </limit>
-                    <!-- 指定类覆盖到100%，不能遗失任何类 -->
-                    <limit implementation="org.jacoco.report.check.Limit">
-                      <counter>CLASS</counter>
-                      <value>MISSEDCOUNT</value>
-                      <maximum>0</maximum>
-                    </limit>
-                  </limits>
-                </rule>
-              </rules>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+  <parent>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <groupId>org.springframework.boot</groupId>
+    <version>2.3.0.RELEASE</version>
+  </parent>
+
+  <properties>
+    <guava.version>29.0-jre</guava.version>
+    <jacoco.version>0.8.5</jacoco.version>
+    <java.version>1.8</java.version>
+    <junit-benchmarks.version>0.7.2</junit-benchmarks.version>
+    <junit-jupiter.version>5.6.2</junit-jupiter.version>
+    <kafka.version>2.2.0</kafka.version>
+
+    <!-- dependencies -->
+    <maven-checkstyle-plugin.version>3.1.1</maven-checkstyle-plugin.version>
+    <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <mockito.version>2.23.4</mockito.version>
+    <mybatis-spring-boot-starter.version>2.1.2</mybatis-spring-boot-starter.version>
+    <pagehelper.version>1.2.13</pagehelper.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <puppycrawl.checkstyle.version>8.29</puppycrawl.checkstyle.version>
+    <scala.version>2.11</scala.version>
+
+    <!-- plugin dependencies -->
+    <slf4j.version>1.7.25</slf4j.version>
+    <spotbugs-maven-plugin.version>4.0.0</spotbugs-maven-plugin.version>
+    <spotbugs.version>4.0.3</spotbugs.version>
+    <timestamp>${maven.build.timestamp}</timestamp>
+    <zookeeper.version>3.4.13</zookeeper.version>
+  </properties>
+
+  <version>0.0.1-SNAPSHOT</version>
 
 </project>

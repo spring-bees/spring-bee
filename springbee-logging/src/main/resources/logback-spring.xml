@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-  <springProperty scope="context" name="server.host" source="server.host" defaultValue="0.0.0.0"/>
-
+  <conversionRule conversionWord="msg" converterClass="org.springbee.logging.ConversionAdapter"/>
   <include resource="logback-appender-console.xml"/>
-
-  <springProfile name="logfile">
-    <include resource="logback-appender-file.xml"/>
-  </springProfile>
+  <root level="info">
+    <appender-ref ref="ConsoleAppender"/>
+    <springProfile name="logkafka">
+      <appender-ref ref="KafkaAppender"/>
+    </springProfile>
+    <springProfile name="logfile">
+      <appender-ref ref="RollingFileAppender"/>
+    </springProfile>
+  </root>
 
   <springProfile name="logkafka">
     <include resource="logback-appender-kafka.xml"/>
   </springProfile>
 
-  <root level="info">
-    <springProfile name="logfile">
-      <appender-ref ref="RollingFileAppender"/>
-    </springProfile>
-    <springProfile name="logkafka">
-      <appender-ref ref="KafkaAppender"/>
-    </springProfile>
-    <appender-ref ref="ConsoleAppender"/>
-  </root>
+  <springProfile name="logfile">
+    <include resource="logback-appender-file.xml"/>
+  </springProfile>
+
+  <springProperty defaultValue="0.0.0.0" name="server.host" scope="context" source="server.host"/>
 </configuration>

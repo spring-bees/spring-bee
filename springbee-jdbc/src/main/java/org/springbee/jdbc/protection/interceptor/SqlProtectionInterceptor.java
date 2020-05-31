@@ -49,39 +49,6 @@ public class SqlProtectionInterceptor implements Interceptor {
     this.keywords = keywords.clone();
   }
 
-  @Override
-  public Object intercept(Invocation invocation) throws Throwable {
-    StatementHandler handler = (StatementHandler) invocation.getTarget();
-    BoundSql boundSql = handler.getBoundSql();
-    String sql = boundSql.getSql();
-    if (keywords != null) {
-      String sqltype = getSqlType(sql).getType();
-      for (String dangerType : keywords) {
-        if (dangerType.toLowerCase().equals(sqltype)) {
-          MetaObject statementHandler = SystemMetaObject.forObject(handler);
-          MappedStatement mappedStatement = (MappedStatement) statementHandler
-              .getValue("delegate.mappedStatement");
-          log.error("Danger SQL keyword [{}] detected from [{}={}] "
-                  + "You can set springbee.sql.danger.enabled=false to disable SQL threat protection "
-                  + "or remove keyword [{}] from springbee.sql.danger.type", dangerType,
-              mappedStatement.getId(), sql, dangerType);
-          throw new DangerException();
-        }
-      }
-    }
-    return invocation.proceed();
-  }
-
-  @Override
-  public Object plugin(Object target) {
-    return Plugin.wrap(target, this);
-  }
-
-  @Override
-  public void setProperties(Properties properties) {
-
-  }
-
   public static SqlProtectionKeywords getSqlType(String sql)
       throws JSQLParserException {
     Statement sqlStmt = CCJSqlParserUtil.parse(new StringReader(sql));
@@ -116,6 +83,39 @@ public class SqlProtectionInterceptor implements Interceptor {
     } else {
       return SqlProtectionKeywords.NONE;
     }
+  }
+
+  @Override
+  public Object intercept(Invocation invocation) throws Throwable {
+    StatementHandler handler = (StatementHandler) invocation.getTarget();
+    BoundSql boundSql = handler.getBoundSql();
+    String sql = boundSql.getSql();
+    if (keywords != null) {
+      String sqltype = getSqlType(sql).getType();
+      for (String dangerType : keywords) {
+        if (dangerType.toLowerCase().equals(sqltype)) {
+          MetaObject statementHandler = SystemMetaObject.forObject(handler);
+          MappedStatement mappedStatement = (MappedStatement) statementHandler
+              .getValue("delegate.mappedStatement");
+          log.error("Danger SQL keyword [{}] detected from [{}={}] "
+                  + "You can set springbee.sql.danger.enabled=false to disable SQL threat protection "
+                  + "or remove keyword [{}] from springbee.sql.danger.type", dangerType,
+              mappedStatement.getId(), sql, dangerType);
+          throw new DangerException();
+        }
+      }
+    }
+    return invocation.proceed();
+  }
+
+  @Override
+  public Object plugin(Object target) {
+    return Plugin.wrap(target, this);
+  }
+
+  @Override
+  public void setProperties(Properties properties) {
+
   }
 
 }

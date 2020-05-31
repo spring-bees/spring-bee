@@ -24,11 +24,10 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @ConditionalOnProperty(value = "springbee.datasource.sql.protection.enabled")
 public class SqlProtectionAutoConfiguration {
 
-  @Autowired
-  private List<SqlSessionFactory> sqlSessionFactoryList;
-
   @Value("${springbee.datasource.sql.protection.keywords}")
   public String[] keywords;
+  @Autowired
+  private List<SqlSessionFactory> sqlSessionFactoryList;
 
   @PostConstruct
   public void addDangerSqlInterceptor() {

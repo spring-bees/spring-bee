@@ -14,4 +14,8 @@ logging.kafka.bootstrap.servers=localhost:9092
 
 # 日志写入文件/kafka， 默认不开启
 spring.profiles.active=logfile,logkafka 
+
+# 日志脱敏
+logging.sensitive[0].regex=(\\d{3})\\d{4}(\\d{4}) # 手机号
+logging.sensitive[0].replacement=$1****$2
 ```
