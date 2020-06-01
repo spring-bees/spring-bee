@@ -119,7 +119,7 @@
                     <!-- 指定类覆盖到100%，不能遗失任何类 -->
                     <limit implementation="org.jacoco.report.check.Limit">
                       <counter>CLASS</counter>
-                      <maximum>10</maximum>
+<!--                      <maximum>10</maximum>-->
                       <value>MISSEDCOUNT</value>
                     </limit>
                   </limits>
