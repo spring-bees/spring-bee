@@ -19,9 +19,12 @@
 
 ### 3. Web
 
-- [x] 支持SSL PKCS12 证书
+- [x] 支持 SSL PKCS12 证书
 - [x] 多端口监听配置
-- [x] 内置Undertow
+- [x] 内置 Undertow
+- [ ] XSS防护
+- [ ] 访问限速
+- [ ] 集成 OpenAPI 3.0
 
 ### 4. Distributed
 
@@ -41,3 +44,4 @@
 - [x] 编译时静态代码检查
 - [x] 编译时代码风格检查
 - [x] 编译时单元测试覆盖率检查
+- [ ] 编译时生成Docker镜像
