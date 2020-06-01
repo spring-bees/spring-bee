@@ -28,6 +28,7 @@
 - [ ] 基于DB分布式锁 
 - [ ] 基于Redis分布式锁
 - [ ] 基于Mongo分布式锁
+- [ ] 基于Zookeeper分布式锁
 
 ### 4. Tools
 
