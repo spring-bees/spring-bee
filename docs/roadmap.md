@@ -23,6 +23,12 @@
 - [x] 多端口监听配置
 - [x] 内置Undertow
 
+### 4. Distributed
+
+- [ ] 基于DB分布式锁 
+- [ ] 基于Redis分布式锁
+- [ ] 基于Mongo分布式锁
+
 ### 4. Tools
 
 - [ ] maven-archetype-springbee
