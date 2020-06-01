@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <included>
+  <property name="FILE" value="${logging.file.name}"/>
+  <property name="LOGS" value="${logging.file.path}"/>
+  <springProperty defaultValue="logs" name="logging.file.path" scope="context"
+    source="logging.file.path"/>
+  <springProperty defaultValue="springbee.log" name="logging.file.name" scope="context"
+    source="logging.file.name"/>
   <appender class="ch.qos.logback.core.rolling.RollingFileAppender"
     name="RollingFileAppender">
     <encoder
@@ -18,10 +24,4 @@
       </timeBasedFileNamingAndTriggeringPolicy>
     </rollingPolicy>
   </appender>
-  <property name="FILE" value="${logging.file.name}"/>
-  <property name="LOGS" value="${logging.file.path}"/>
-  <springProperty defaultValue="logs" name="logging.file.path" scope="context"
-    source="logging.file.path"/>
-  <springProperty defaultValue="springbee.log" name="logging.file.name" scope="context"
-    source="logging.file.name"/>
 </included>
