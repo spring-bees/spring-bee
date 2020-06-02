@@ -29,7 +29,7 @@
 - [ ] 基于Redis分布式锁
 - [ ] 基于Mongo分布式锁
 - [ ] 基于Zookeeper分布式锁
-- [ ] 分布式缓存
+- [x] 分布式缓存
 - [ ] 分布式事务集成 ServiceComb Pack
 
 ### 4. Tools
