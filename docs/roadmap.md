@@ -3,11 +3,8 @@
 ### 1. DB
 
 - [x] 数据源配置
-
 - [x] 多数据源配置
-
 - [x] 数据库版本管理
-
 - [x] 敏感SQL指令保护
 
 ### 2. Logging
@@ -19,9 +16,12 @@
 
 ### 3. Web
 
-- [x] 支持SSL PKCS12 证书
+- [x] 支持 SSL PKCS12 证书
 - [x] 多端口监听配置
-- [x] 内置Undertow
+- [x] 内置 Undertow
+- [ ] XSS防护
+- [ ] 访问限速
+- [ ] 集成 OpenAPI 3.0
 
 ### 4. Distributed
 
@@ -29,6 +29,8 @@
 - [ ] 基于Redis分布式锁
 - [ ] 基于Mongo分布式锁
 - [ ] 基于Zookeeper分布式锁
+- [x] 分布式缓存
+- [ ] 分布式事务集成 ServiceComb Pack
 
 ### 4. Tools
 
@@ -39,3 +41,4 @@
 - [x] 编译时静态代码检查
 - [x] 编译时代码风格检查
 - [x] 编译时单元测试覆盖率检查
+- [ ] 编译时生成Docker镜像

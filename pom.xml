@@ -196,6 +196,16 @@
       <groupId>org.junit.jupiter</groupId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.awaitility</groupId>
+      <artifactId>awaitility</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.github.spotbugs</groupId>
+      <artifactId>spotbugs-annotations</artifactId>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
   <dependencyManagement>
     <dependencies>
@@ -253,6 +263,11 @@
         <artifactId>slf4j-api</artifactId>
         <groupId>org.slf4j</groupId>
         <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.hazelcast</groupId>
+        <artifactId>hazelcast-all</artifactId>
+        <version>${hazelcast.version}</version>
       </dependency>
 
       <!-- test -->
@@ -332,6 +347,18 @@
         <scope>test</scope>
         <version>${junit-jupiter.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.awaitility</groupId>
+        <artifactId>awaitility</artifactId>
+        <scope>test</scope>
+        <version>${awaitility.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-annotations</artifactId>
+        <version>${spotbugs.version}</version>
+        <scope>provided</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <groupId>org.springbee</groupId>
@@ -344,6 +371,8 @@
     <module>springbee-web</module>
     <module>springbee-logging</module>
     <module>springbee-logging-kafka</module>
+    <module>springbee-distributed-cache</module>
+    <module>springbee-distributed-lock</module>
     <module>springbee-demo</module>
     <module>maven-archetype-springbee</module>
   </modules>
@@ -377,6 +406,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <puppycrawl.checkstyle.version>8.29</puppycrawl.checkstyle.version>
     <scala.version>2.11</scala.version>
+    <hazelcast.version>4.0.1</hazelcast.version>
+    <awaitility.version>3.0.0</awaitility.version>
 
     <!-- plugin dependencies -->
     <slf4j.version>1.7.25</slf4j.version>
