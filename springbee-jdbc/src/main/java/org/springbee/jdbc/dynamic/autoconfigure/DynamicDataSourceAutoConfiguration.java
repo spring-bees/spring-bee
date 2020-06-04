@@ -11,7 +11,6 @@ import java.util.WeakHashMap;
 import java.util.stream.Collectors;
 import javax.sql.DataSource;
 import org.apache.ibatis.mapping.DatabaseIdProvider;
-import org.apache.ibatis.mapping.VendorDatabaseIdProvider;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springbee.jdbc.dynamic.DynamicDataSource;
 import org.springbee.jdbc.dynamic.aspect.DynamicDataSourceAspect;
@@ -38,7 +37,7 @@ import org.springframework.core.env.Environment;
 @AutoConfigureAfter(FlywayAutoConfiguration.class)
 public class DynamicDataSourceAutoConfiguration implements EnvironmentAware {
 
-  public static final String SPRING_DATASOURCE_PREFIX = "spring.datasource";
+
   public static final String SPRING_DYNAMIC_DATASOURCE_PREFIX = "spring.dynamicdatasource";
   public static final String SPRING_FLYWAY_POOL_NAME = "spring.flyway.poolName";
   public static final String DEFAULT_DATASOURCE = "default";
@@ -52,22 +51,6 @@ public class DynamicDataSourceAutoConfiguration implements EnvironmentAware {
   @Override
   public void setEnvironment(final Environment environment) {
     this.environment = environment;
-  }
-
-  @Bean(name = "defaultDataSource")
-  public DataSource defaultDataSource() {
-    return bindDataSource(SPRING_DATASOURCE_PREFIX);
-  }
-
-  private DataSource bindDataSource(String prefix) {
-    DataSourceProperties properties = Binder.get(environment)
-        .bind(prefix, DataSourceProperties.class).orElse(null);
-    HikariConfig hikariConfig = Binder.get(environment)
-        .bind(prefix + HIKARI_PREFIX, HikariConfig.class).orElseGet(null);
-    hikariConfig.setJdbcUrl(properties.getUrl());
-    hikariConfig.setUsername(properties.getUsername());
-    hikariConfig.setPassword(properties.getPassword());
-    return new HikariDataSource(hikariConfig);
   }
 
   @Bean
@@ -107,21 +90,6 @@ public class DynamicDataSourceAutoConfiguration implements EnvironmentAware {
       });
     }
     return ds;
-  }
-
-  @Bean
-  public DatabaseIdProvider databaseIdProvider() {
-    DatabaseIdProvider databaseIdProvider = new VendorDatabaseIdProvider();
-    Properties p = new Properties();
-    p.setProperty("Oracle", "oracle");
-    p.setProperty("MySQL", "mysql");
-    p.setProperty("H2", "h2");
-    p.setProperty("SQLite", "sqlite");
-    p.setProperty("SQL Server", "sqlserver");
-    p.setProperty("DB2", "db2");
-    p.setProperty("PostgreSQL", "postgresql");
-    databaseIdProvider.setProperties(p);
-    return databaseIdProvider;
   }
 
   @Bean
