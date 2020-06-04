@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>springbee-distributed-leader</artifactId>
+  <name>SpringBee :: Distributed Leader</name>
+  <packaging>jar</packaging>
+  <parent>
+    <artifactId>springbee-parent</artifactId>
+    <groupId>org.springbee</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <dependencies>
+    <dependency>
+      <artifactId>springbee-boot</artifactId>
+      <groupId>org.springbee</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>springbee-common</artifactId>
+      <groupId>org.springbee</groupId>
+    </dependency>
+    <dependency>
+      <groupId>com.typesafe.akka</groupId>
+      <artifactId>akka-actor-typed_${scala.version}</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.typesafe.akka</groupId>
+      <artifactId>akka-cluster-typed_${scala.version}</artifactId>
+    </dependency>
+
+    <!-- test -->
+    <dependency>
+      <groupId>com.typesafe.akka</groupId>
+      <artifactId>akka-actor-testkit-typed_${scala.version}</artifactId>
+      <version>${akka.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>

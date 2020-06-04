@@ -269,6 +269,16 @@
         <artifactId>hazelcast-all</artifactId>
         <version>${hazelcast.version}</version>
       </dependency>
+      <dependency>
+        <groupId>com.typesafe.akka</groupId>
+        <artifactId>akka-actor-typed_${scala.version}</artifactId>
+        <version>${akka.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.typesafe.akka</groupId>
+        <artifactId>akka-cluster-typed_${scala.version}</artifactId>
+        <version>${akka.version}</version>
+      </dependency>
 
       <!-- test -->
       <dependency>
@@ -372,7 +382,7 @@
     <module>springbee-logging</module>
     <module>springbee-logging-kafka</module>
     <module>springbee-distributed-cache</module>
-    <module>springbee-distributed-lock</module>
+    <module>springbee-distributed-leader</module>
     <module>springbee-demo</module>
     <module>maven-archetype-springbee</module>
   </modules>
@@ -405,9 +415,10 @@
     <pagehelper.version>1.2.13</pagehelper.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <puppycrawl.checkstyle.version>8.29</puppycrawl.checkstyle.version>
-    <scala.version>2.11</scala.version>
+    <scala.version>2.12</scala.version>
     <hazelcast.version>4.0.1</hazelcast.version>
     <awaitility.version>3.0.0</awaitility.version>
+    <akka.version>2.6.5</akka.version>
 
     <!-- plugin dependencies -->
     <slf4j.version>1.7.25</slf4j.version>

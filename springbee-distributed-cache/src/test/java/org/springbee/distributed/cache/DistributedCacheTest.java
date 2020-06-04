@@ -40,10 +40,10 @@ import org.springframework.boot.test.context.SpringBootTest;
     "springbee.distributed.cache.list.my_list.asyncBackupCount=0",
     /* map */
     "springbee.distributed.cache.map.my_map.evictionPolicy=LRU",
-    "springbee.distributed.cache.map.my_map.timeToLiveSeconds=5",
-    "springbee.distributed.cache.map.my_map.maxIdleSeconds=2",
+    "springbee.distributed.cache.map.my_map.timeToLiveSeconds=8",
+    "springbee.distributed.cache.map.my_map.maxIdleSeconds=3",
     "springbee.distributed.cache.map.my_map.maxSize=10",
-})
+},classes = {Application.class})
 public class DistributedCacheTest {
 
   DistributedQueue<Integer> queue;
@@ -104,7 +104,7 @@ public class DistributedCacheTest {
     String v = "value";
     map.put(k, v);
     assertThat(map.get(k), equalTo(v));
-    await().atMost(6, SECONDS).until(() -> map.get("key") == null);
+    await().atMost(10, SECONDS).until(() -> map.get("key") == null);
   }
 
   /**
@@ -116,11 +116,11 @@ public class DistributedCacheTest {
     String k = "key";
     String v = "value";
     map.put(k, v);
-    Thread.sleep(1000);
+    Thread.sleep(2000);
     assertThat(map.get(k), equalTo(v));
-    Thread.sleep(1000);
+    Thread.sleep(2000);
     assertThat(map.get(k), equalTo(v));
-    Thread.sleep(1000);
+    Thread.sleep(2000);
     assertThat(map.get(k), equalTo(v));
     await().atMost(3, SECONDS).until(() -> map.get("key") == null);
   }
