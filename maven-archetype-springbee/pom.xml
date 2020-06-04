@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns="http://maven.apache.org/POM/4.0.0"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <artifactId>maven-archetype-springbee</artifactId>
-  <groupId>org.springbee</groupId>
-
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <name>SpringBee :: Maven Archetype SpringBee</name>
-  <packaging>jar</packaging>
+
+  <groupId>org.springbee</groupId>
+  <artifactId>maven-archetype-springbee</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>maven-archetype</packaging>
+  <name>SpringBee :: Maven Archetype SpringBee</name>  
+  
   <parent>
     <artifactId>springbee-parent</artifactId>
     <groupId>org.springbee</groupId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <version>0.0.1-SNAPSHOT</version>
 
+  <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.archetype</groupId>
+        <artifactId>archetype-packaging</artifactId>
+      </extension>
+    </extensions>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.archetype</groupId>
+        <artifactId>maven-archetype-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>
