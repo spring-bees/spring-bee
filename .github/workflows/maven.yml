@@ -11,9 +11,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 1.8
@@ -23,4 +21,4 @@ jobs:
       - name: Build with Maven
         run: mvn -B package checkstyle:check --file pom.xml
       - name: Coveralls
-        run: mvn -B jacoco:report coveralls:report -DrepoToken=${{ secrets.COVERALLS_TOKEN }} --file pom.xml
+        run: mvn -B jacoco:report coveralls:report -DrepoToken=5o6kSl2F8t6wyGzNQ1RIsODZKKnZMIJiJ --file pom.xml
