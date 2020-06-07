@@ -22,3 +22,5 @@ jobs:
           java-version: 1.8
       - name: Build with Maven
         run: mvn -B package checkstyle:check --file pom.xml
+      - name: Coveralls
+        run: mvn -B jacoco:report coveralls:report -DrepoToken=${{ secrets.COVERALLS_TOKEN }} --file pom.xml
