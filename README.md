@@ -1,4 +1,4 @@
-![build](https://github.com/coolbeevip/spring-bee/workflows/build/badge.svg)
+![build](https://github.com/coolbeevip/spring-bee/workflows/build/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/spring-bees/spring-bee/badge.svg?branch=master)](https://coveralls.io/github/spring-bees/spring-bee?branch=master)
 
 ## 编译和运行代码
 
