@@ -1,3 +1,5 @@
+![build](https://github.com/coolbeevip/spring-bee/workflows/build/badge.svg)
+
 ## 编译和运行代码
 
 * 编译代码
