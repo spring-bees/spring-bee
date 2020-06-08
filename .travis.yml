@@ -9,4 +9,4 @@ cache:
 
 script:
   - mvn clean install -B checkstyle:check
-  - mvn -B jacoco:report coveralls:report -DrepoToken="${evn.COVERALLS_TOKEN}"
+  - mvn -B jacoco:report coveralls:report -DrepoToken=$COVERALLS_TOKEN
