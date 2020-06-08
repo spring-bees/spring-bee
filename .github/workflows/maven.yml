@@ -26,8 +26,7 @@ jobs:
         run: mvn -B checkstyle:check --file pom.xml
       - name: param
         with:
-          MYTOKEN: ${{ secrets.COVERALLS_TOKEN }}
-        run: echo 'my' $MYTOKEN
+          COVERALLS_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
       # 代码测试覆盖率
       - name: Coveralls
         run: mvn -B jacoco:report coveralls:report -DrepoToken="${{ secrets.COVERALLS_TOKEN }}" --file pom.xml
