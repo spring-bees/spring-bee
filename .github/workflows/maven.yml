@@ -26,6 +26,4 @@ jobs:
         run: mvn -B checkstyle:check --file pom.xml
       # 代码测试覆盖率
       - name: Coveralls
-        env:
-          COVERALLS_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
-        run: mvn -B jacoco:report coveralls:report -DrepoToken=5o6kSl2F8t6wyGzNQ1RIsODZKKnZMIJiJ --file pom.xml
+        run: mvn -B jacoco:report coveralls:report -DrepoToken=${{ secrets.COVERALLS_TOKEN }} --file pom.xml
