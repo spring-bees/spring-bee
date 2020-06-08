@@ -28,4 +28,4 @@ jobs:
       - name: Coveralls
         env:
           COVERALLS_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
-        run: mvn -B jacoco:report coveralls:report -DrepoToken=$COVERALLS_TOKEN --file pom.xml
+        run: mvn -B jacoco:report coveralls:report -DrepoToken=${{ secrets.COVERALLS_TOKEN }} --file pom.xml
