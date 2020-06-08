@@ -28,7 +28,7 @@ jobs:
         env:
           IAM: ZHANGLEI
           COVERALLS_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
-        run: echo ${#COVERALLS_TOKEN} $IAM ${#IAM}
+        run: echo $COVERALLS_TOKEN $IAM
       # 代码测试覆盖率
       - name: Coveralls
         run: mvn -B jacoco:report coveralls:report -DrepoToken="${{ secrets.COVERALLS_TOKEN }}" --file pom.xml
