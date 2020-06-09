@@ -3,9 +3,16 @@ language: java
 jdk:
   - openjdk8
 
+addons:
+  sonarcloud:
+    organization: "spring-bees"
+    token:
+      secure: "5348fd459773428f29efbe3f50eb665433bb4516"
+
 cache:
   directories:
     - "$HOME/.m2"
+
 
 script:
   - mvn clean install -B checkstyle:check
