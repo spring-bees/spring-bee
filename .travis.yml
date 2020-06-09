@@ -15,5 +15,5 @@ cache:
 
 
 script:
-  - mvn clean install -B checkstyle:check
+  - mvn clean install -B checkstyle:check sonar:sonar
   - mvn -B jacoco:report coveralls:report -DrepoToken=$COVERALLS_TOKEN
