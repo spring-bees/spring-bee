@@ -44,7 +44,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-archetype-plugin</artifactId>
-          <groupId>org.apache.maven.archetype</groupId>
+          <groupId>org.apache.maven.plugins</groupId>
           <version>${maven-archetype-plugin.version}</version>
         </plugin>
         <plugin>
@@ -420,7 +420,6 @@
     <kafka.version>2.2.0</kafka.version>
 
     <!-- dependencies -->
-    <maven-archetype-plugin.version>3.1.2</maven-archetype-plugin.version>
     <maven-checkstyle-plugin.version>3.1.1</maven-checkstyle-plugin.version>
     <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -442,6 +441,7 @@
     <timestamp>${maven.build.timestamp}</timestamp>
     <zookeeper.version>3.4.13</zookeeper.version>
     <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
+    <maven-archetype-plugin.version>3.1.2</maven-archetype-plugin.version>
   </properties>
 
   <version>0.0.1-SNAPSHOT</version>
