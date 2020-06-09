@@ -15,5 +15,5 @@ cache:
 
 
 script:
-  - mvn clean install -B checkstyle:check sonar:sonar
+  - mvn clean install -B checkstyle:check sonar:sonar -Dsonar.projectKey=spring-bees_spring-bee
   - mvn -B jacoco:report coveralls:report -DrepoToken=$COVERALLS_TOKEN
