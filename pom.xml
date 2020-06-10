@@ -90,7 +90,6 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
           <compilerArgs>
-            <compilerArg>-Werror</compilerArg>
             <compilerArg>-Xlint:deprecation</compilerArg>
             <compilerArg>-Xlint:unchecked</compilerArg>
           </compilerArgs>
@@ -391,6 +390,7 @@
     <module>buildtools</module>
     <module>springbee-common</module>
     <module>springbee-boot</module>
+    <module>springbee-id</module>
     <module>springbee-jdbc</module>
     <module>springbee-web</module>
     <module>springbee-logging</module>
