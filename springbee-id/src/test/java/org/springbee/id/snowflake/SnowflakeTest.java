@@ -23,7 +23,7 @@ public class SnowflakeTest {
   public void test(){
     await().atMost(1, SECONDS).until(() -> {
       int loop =0;
-      while(loop++<10000){
+      while(loop++<100){
         log.info("{}", idGenerator.genId());
       }
       return true;
