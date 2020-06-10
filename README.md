@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/spring-bees/spring-bee.svg?branch=master)](https://travis-ci.org/spring-bees/spring-bee.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/spring-bees/spring-bee/badge.svg?branch=master)](https://coveralls.io/github/spring-bees/spring-bee?branch=master) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=spring-bees_spring-bee&metric=alert_status)](https://sonarcloud.io/dashboard?id=spring-bees_spring-bee) 
+[![Build Status](https://travis-ci.org/spring-bees/spring-bee.svg?branch=master)](https://travis-ci.org/github/spring-bees/spring-bee?branch=master) [![Coverage Status](https://coveralls.io/repos/github/spring-bees/spring-bee/badge.svg?branch=master)](https://coveralls.io/github/spring-bees/spring-bee?branch=master) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=spring-bees_spring-bee&metric=alert_status)](https://sonarcloud.io/dashboard?id=spring-bees_spring-bee) 
 
 ## 编译和运行代码
 
