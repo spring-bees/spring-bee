@@ -2,6 +2,7 @@ package org.springbee.id.snowflake;
 
 import java.net.Inet4Address;
 import java.net.UnknownHostException;
+import java.nio.charset.Charset;
 import java.util.Random;
 import lombok.extern.slf4j.Slf4j;
 import org.springbee.id.IdGenerator;
@@ -121,7 +122,7 @@ class Snowflake implements IdGenerator {
 
   // 获取字符串s的字节数组，然后将数组的元素相加，对（max+1）取余
   private static int getHostId(String s, int max) {
-    byte[] bytes = s.getBytes();
+    byte[] bytes = s.getBytes(Charset.forName("UTF-8"));
     int sums = 0;
     for (int b : bytes) {
       sums += b;
