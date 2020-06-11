@@ -7,7 +7,6 @@ public class SnowflakeAutoConfiguration {
 
   @Bean
   public IdGenerator snowflake(SnowflakeProperties snowflakeProperties) {
-    Snowflake snowflake = new Snowflake(snowflakeProperties);
-    return snowflake;
+    return new Snowflake(snowflakeProperties);
   }
 }

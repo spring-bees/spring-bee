@@ -14,16 +14,16 @@ import org.springframework.boot.test.context.SpringBootTest;
     "springbee.id.snowflake.data=0",
     "springbee.id.snowflake.work=0"
 })
-public class SnowflakeTest {
+class SnowflakeTest {
 
   @Autowired
   IdGenerator idGenerator;
 
   @Test
-  public void test(){
+  void test() {
     await().atMost(1, SECONDS).until(() -> {
-      int loop =0;
-      while(loop++<100){
+      int loop = 0;
+      while (loop++ < 100) {
         log.info("{}", idGenerator.genId());
       }
       return true;
