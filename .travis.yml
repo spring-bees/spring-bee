@@ -7,7 +7,7 @@ addons:
   sonarcloud:
     organization: "spring-bees"
     token:
-      secure: "5348fd459773428f29efbe3f50eb665433bb4516"
+      secure: "HhvTMcTXhlCgwnhZmpiL3flI4f1TwqnYNmklNPElo1CdZygym8Hv26AdZ7nZyga9zkUFKMX8wPZcvUR3mYKz8hpqVXjHptq9ICzNSmmHB+wypJNPwE4jeRKdWzjVmBQJz9/7tYsc3b+NA3ToKaqWus8jD4TeJb+op9EfREeMBwLz08IG5x7bumBskezFJk4AvGaVbeDgUIPEMFeDcclK5E20qh/WSuuddwR1aTOxaphFyHtHlm3L2Yjc0BIuDfx/wNuAuVYyZDKegVhvkqMNjKemT+MmSlbGR1rF1qIBxEsp8B3m41pHew+qUXJb+RUb+A3K2GghDS5NB9BKPHPFdX5d4661ku36modtfUNcfVxA7oYZiPXgUjpnUx6CyT7ddTaH/McKBOWtwpXG6uuL+LenqUu692qDUwUX3nszmEAD/G2MNJ20aDYk5/eUsRoXhQ7ijjR86aXrb+oiUylPNtL/cHE51snWrJQy9bKLKZxEb0akZUu9xvWaa5oVFGftWBtqixIj/qql+QcqPiMUBaZqcJ0HMzg1JKnhffZrF8KK4WX7TjRLbf6Id9rI2eBeO0lP7iubVktTPZQGtmveOHYAiX4qhRBkEXBd/J/T+XGsDnymbJqR2IVwG6v2vqYHIsNQtGGoWL84tRa920ReQ91yCqNUOZeJdkvmfN2HzQs="
 
 cache:
   directories:
@@ -17,4 +17,4 @@ cache:
 script: 
   - mvn clean install -B checkstyle:check 
   - mvn -B jacoco:report coveralls:report -DrepoToken=$COVERALLS_TOKEN
-  - mvn clean verify -B sonar:sonar -Dsonar.projectKey=spring-bees_spring-bee -Dsonar.login="5348fd459773428f29efbe3f50eb665433bb4516" -DskipTests
+  - mvn clean verify -B sonar:sonar -Dsonar.projectKey=spring-bees_spring-bee -DskipTests
