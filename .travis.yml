@@ -7,7 +7,7 @@ addons:
   sonarcloud:
     organization: "spring-bees"
     token:
-      secure: "pC1onleJrV+MT9C43OqcbeKX4PxvksHPH4dutdsMaXEeVB8OQqSxpqrvu8QXGwpb8+99dCsrl2R3QNhuh5e8RTxqG4/Un2zM28s46P/+SXxecty/wQJwRfGPHX26INWyWwA8Nv5fiZfiYMGrnUFLoFyP2ZoieJk+bmbMy5bYvpW+kEih9qAtWNZtAQlomoZ68njtoqTkLpAGM1qEpQzskSlPCR+ugqgh9Ub+liy8VxrwtKwwFerNB7eRNsnwartwHYnVFMaNnx19vb14ASGrBPun13MKrzhT6kLMHvcxcXUv5A7lGpPz5/SLc43GvkZLUFMZfktHq1jj6Uc9W0lJFePFFWsmsF1dHUze6XIA4WmwtDlQvqrFsGLBkCNUhD27X6AXsd2bYyG7vJJ+KlX+7JgU5BhhAURIO3Fe59XNyL0WKt7dLsTwmGoZ65SHCnIuq7spuVQX/PlG6Gg3Xlspntp1dfQSFCG20oRIZBpiRZiyOT93/779C9yPv5Kal1RbKii2voPz1SiROOJbKWxjWNxFwcHbp2JilT6bghnCMyg4ixU/gcgSXtQUUIpr9esBXOCCoxaR//X+qbCstGQVqWwCphJR4jNh2JMlH6P8Mn4SI+YCzvulhCtBXMb9eFMQo/mSRBMepZcgVZddy4TXXYOf/F2Snwq85Kt1RUeiXxU="
+      secure: "5348fd459773428f29efbe3f50eb665433bb4516"
 
 cache:
   directories:
