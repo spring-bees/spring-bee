@@ -12,11 +12,11 @@
             <configLocation>buildtools/src/main/resources/checkstyle.xml</configLocation>
             <consoleOutput>true</consoleOutput>
             <encoding>UTF-8</encoding>
+            <violationSeverity>warning</violationSeverity>
             <failOnViolation>true</failOnViolation>
             <includeResources>false</includeResources>
             <includeTestSourceDirectory>true</includeTestSourceDirectory>
-            <suppressionsLocation>buildtools/src/main/resources/suppressions.xml
-            </suppressionsLocation>
+            <suppressionsLocation>buildtools/src/main/resources/suppressions.xml</suppressionsLocation>
           </configuration>
           <dependencies>
             <dependency>
@@ -128,7 +128,7 @@
                     <!-- 指定类覆盖到100%，不能遗失任何类 -->
                     <limit implementation="org.jacoco.report.check.Limit">
                       <counter>CLASS</counter>
-<!--                      <maximum>10</maximum>-->
+                      <!--                      <maximum>10</maximum>-->
                       <value>MISSEDCOUNT</value>
                     </limit>
                   </limits>
