@@ -5,7 +5,9 @@ import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import lombok.Builder;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Builder
 public class InetAddressUtil {
 
@@ -19,7 +21,7 @@ public class InetAddressUtil {
         ipv6 = true;
       }
     } catch (UnknownHostException e) {
-      e.printStackTrace();
+      log.error(e.getMessage(), e);
     }
     return ipv6;
   }

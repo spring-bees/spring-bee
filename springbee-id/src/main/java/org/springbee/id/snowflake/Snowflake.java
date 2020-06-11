@@ -2,8 +2,8 @@ package org.springbee.id.snowflake;
 
 import java.net.Inet4Address;
 import java.net.UnknownHostException;
-import java.nio.charset.Charset;
-import java.util.Random;
+import java.nio.charset.StandardCharsets;
+import java.security.SecureRandom;
 import lombok.extern.slf4j.Slf4j;
 import org.springbee.id.IdGenerator;
 
@@ -11,7 +11,6 @@ import org.springbee.id.IdGenerator;
 class Snowflake implements IdGenerator {
 
   // 每一部分占用的位数
-//  private static final int TIME_LEN = 41; // 时间部分所占长度
   private static final int DATACENTER_BIT = 5; // 数据中心id所占长度
   private static final int MACHINE_BIT = 5; //机器id所占长度
   private static final int SEQUENCE_BIT = 12; // 毫秒内序列所占长度
@@ -46,7 +45,7 @@ class Snowflake implements IdGenerator {
         this.dataCenterId = getHostId(Inet4Address.getLocalHost().getHostAddress(),
             MAX_DATACENTER_NUM);
       } catch (UnknownHostException e) {
-        this.dataCenterId = new Random().nextInt(DATA_RANDOM);
+        this.dataCenterId = new SecureRandom().nextInt(DATA_RANDOM);
       }
     } else {
       if (snowflakeProperties.getDataCenterId() > MAX_DATACENTER_NUM
@@ -62,7 +61,7 @@ class Snowflake implements IdGenerator {
       try {
         this.machineId = getHostId(Inet4Address.getLocalHost().getHostAddress(), MAX_MACHINE_NUM);
       } catch (UnknownHostException e) {
-        this.machineId = new Random().nextInt(WORK_RANDOM);
+        this.machineId = new SecureRandom().nextInt(WORK_RANDOM);
       }
     } else {
       if (machineId > MAX_MACHINE_NUM || machineId < 0) {
@@ -122,7 +121,7 @@ class Snowflake implements IdGenerator {
 
   // 获取字符串s的字节数组，然后将数组的元素相加，对（max+1）取余
   private static int getHostId(String s, int max) {
-    byte[] bytes = s.getBytes(Charset.forName("UTF-8"));
+    byte[] bytes = s.getBytes(StandardCharsets.UTF_8);
     int sums = 0;
     for (int b : bytes) {
       sums += b;
